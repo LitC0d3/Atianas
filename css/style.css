@@ -10,8 +10,8 @@ body {
   color: #fff; }
 
 ::selection {
-  background: #000;
-  color: #fff; }
+  background: #ececec;
+  color: #000; }
 
 a {
   -webkit-transition: .3s all ease;
