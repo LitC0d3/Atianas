@@ -249,6 +249,16 @@ include './php/conexion.php';
       function incrementar(cantidad, precio, id){
         var mult = parseFloat(cantidad)* parseFloat(precio);
         $(".cant"+id).text("S/."+mult);
+        $.ajax({
+          method:'POST',
+          url:'./php/actualizarCarrito.php',
+          data:{
+            id:id,
+            cantidad:cantidad
+          }
+        }).done(function(respuesta){
+
+        });
       }
     });
   </script>
