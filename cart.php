@@ -106,9 +106,11 @@ include './php/conexion.php';
                 </thead>
                 <tbody>
                   <?php 
+                  $total = 0;
                   if(isset($_SESSION['carrito'])){
                     $arregloCarrito =$_SESSION['carrito'];
                     for($i=0;$i<count($arregloCarrito);$i++){
+                      $total = $total + ($arregloCarrito[$i]['Precio'] * $arregloCarrito[$i]['Cantidad']);
                     ?>
                   <tr>
                     <td class="product-thumbnail">
@@ -180,7 +182,7 @@ include './php/conexion.php';
                     <span class="text-black">Subtotal</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
+                    <strong class="text-black">S/.<?php echo $total; ?></strong>
                   </div>
                 </div>
                 <div class="row mb-5">
@@ -188,7 +190,7 @@ include './php/conexion.php';
                     <span class="text-black">Total</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
+                    <strong class="text-black">S/.<?php echo $total; ?></strong>
                   </div>
                 </div>
 

@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['carrito'])){
+  header("location: ./index.php");
+}
+$arreglo = $_SESSION['carrito'];
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -226,26 +233,27 @@
                 <div class="p-3 p-lg-5 border">
                   <table class="table site-block-order-table mb-5">
                     <thead>
+                      <?php
+                      $total = 0;
+                        for($i=0;$i<count($arreglo); $i++){
+                          $total = $total + ($arreglo[$i]['Precio'] * $arreglo[$i]['Cantidad']);
+
+                        ?>
                       <th>Product</th>
                       <th>Total</th>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
-                        <td>$250.00</td>
+                        <td><?php echo $arreglo[$i]['Nombre']; ?></td>
+                        <td>S/.<?php echo number_format($total, 2 , '.', ''); ?></td>
                       </tr>
                       <tr>
-                        <td>Polo Shirt <strong class="mx-2">x</strong>   1</td>
-                        <td>$100.00</td>
-                      </tr>
-                      <tr>
-                        <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                        <td class="text-black">$350.00</td>
-                      </tr>
-                      <tr>
-                        <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                        <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
-                      </tr>
+                        <?php 
+                          }
+                        ?>
+                        <tr>
+                          <td>Orden Total</td>
+                          <td>S/.<?php echo number_format($total, 2 , '.', ''); ?></td>
                     </tbody>
                   </table>
 
@@ -280,7 +288,7 @@
                   </div>
 
                   <div class="form-group">
-                    <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Place Order</button>
+                    <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='thankyou.php'">Place Order</button>
                   </div>
 
                 </div>
