@@ -22,8 +22,7 @@ $conexion -> query("insert into usuario(nombre,telefono,email,password)
     )
 ") or die($conexion->error);
 $id_usuario = $conexion->insert_id;
-
-        
+       
 $fecha = date('Y-m-d-h:m:s');
 $conexion -> query("insert into ventas(id_usuario,total,fecha) values($id_usuario,$total,'$fecha')") or die($conexion->error);
 $id_venta = $conexion ->insert_id;
@@ -37,6 +36,7 @@ for($i=0; $i<count($arreglo);$i++){
   ".$arreglo[$i]['Precio'].",
   ".$arreglo[$i]['Cantidad']*$arreglo[$i]['Precio']."
   ) ") or die($conexion->error);
+   $conexion->query("update productos set inventario =inventario -".$arreglo[$i]['Cantidad']." where id=".$arreglo[$i]['Id'] )or die($conexion->error);
 }
 $conexion->query(" insert into envios(Contacto,Provincia,Distrito,direccion,cp,id_venta)  
   values
