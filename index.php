@@ -73,7 +73,7 @@
   $totalProductos = mysqli_fetch_row($totalQuery);
   $totalBotones = round($totalProductos[0] / $limite);
   if(isset($_GET['limite'])){
-    $resultado = $conexion ->query("select * from productos where inventario>0 order by id DESC limit ".$_GET['limite'].",".$limite)or die($conexion -> error);
+    $resultado = $conexion ->query("select * from productos where inventario>0 limit ".$_GET['limite'].",".$limite)or die($conexion -> error);
   }else{
     $resultado = $conexion ->query("select * from productos where inventario>0 order by id DESC limit ".$limite)or die($conexion -> error);
   }
@@ -101,7 +101,6 @@
               <div class="col-md-12 text-center">
                 <div class="site-block-27">
                   <ul>
-                    <li><a href="#">&lt;</a></li>
                     <?php 
                     if(isset($_GET['limite'])){
                       if($_GET['limite']>0){
@@ -119,7 +118,6 @@
                       echo '<li><a href="index.php?limite=10">&gt;</a></li>';
                     }
                     ?>	
-                    <li><a href="#">&gt;</a></li>
                   </ul>
                 </div>
               </div>
