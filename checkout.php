@@ -31,7 +31,7 @@ $arreglo = $_SESSION['carrito'];
   
   <div class="site-wrap">
     <?php include("./layouts/header.php"); ?> 
-
+    <form action="./thankyou.php" method="post">
     <div class="site-section">
       <div class="container">
         <div class="row mb-5">
@@ -47,7 +47,7 @@ $arreglo = $_SESSION['carrito'];
             <div class="p-3 p-lg-5 border">
               <div class="form-group">
                 <label for="c_country" class="text-black">Country <span class="text-danger">*</span></label>
-                <select id="c_country" class="form-control">
+                <select id="c_country" class="form-control" name="country">
                   <option value="1">Select a country</option>    
                   <option value="2">bangladesh</option>    
                   <option value="3">Algeria</option>    
@@ -83,18 +83,13 @@ $arreglo = $_SESSION['carrito'];
                   <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Street address">
                 </div>
               </div>
-
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
-              </div>
-
               <div class="form-group row">
                 <div class="col-md-6">
                   <label for="c_state_country" class="text-black">State / Country <span class="text-danger">*</span></label>
                   <input type="text" class="form-control" id="c_state_country" name="c_state_country">
                 </div>
                 <div class="col-md-6">
-                  <label for="c_postal_zip" class="text-black">Posta / Zip <span class="text-danger">*</span></label>
+                  <label for="c_postal_zip" class="text-black">Postal / Zip <span class="text-danger">*</span></label>
                   <input type="text" class="form-control" id="c_postal_zip" name="c_postal_zip">
                 </div>
               </div>
@@ -117,7 +112,7 @@ $arreglo = $_SESSION['carrito'];
                     <p class="mb-3">Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
                     <div class="form-group">
                       <label for="c_account_password" class="text-black">Account Password</label>
-                      <input type="email" class="form-control" id="c_account_password" name="c_account_password" placeholder="">
+                      <input type="password" class="form-control" id="c_account_password" name="c_account_password" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -168,10 +163,6 @@ $arreglo = $_SESSION['carrito'];
                         <label for="c_diff_address" class="text-black">Address <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="c_diff_address" name="c_diff_address" placeholder="Street address">
                       </div>
-                    </div>
-
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
                     </div>
 
                     <div class="form-group row">
@@ -288,19 +279,18 @@ $arreglo = $_SESSION['carrito'];
                   </div>
 
                   <div class="form-group">
-                    <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='thankyou.php'">Place Order</button>
+                    <button class="btn btn-primary btn-lg py-3 btn-block" type="submit">Place Order</button>
                   </div>
 
                 </div>
               </div>
             </div>
-
           </div>
         </div>
         <!-- </form> -->
       </div>
     </div>
-
+    </form>
     <?php include("./layouts/footer.php"); ?> 
   </div>
 
