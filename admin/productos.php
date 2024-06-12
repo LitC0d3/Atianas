@@ -239,7 +239,7 @@
   <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditar" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form action="../php/insertarproducto.php" method="POST" enctype="multipart/form-data">
+      <form action="../php/editarproducto.php" method="POST" enctype="multipart/form-data">
       <div class="modal-header">
         <h5 class="modal-title" id="modalEditar">Editar Producto</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -247,6 +247,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <input type="hidden" id="idEdit" name="id">
         <div class="form-group">
           <label for="nombreEdit">Nombre</label>
           <input type="text" name="nombre" placeholder="nombre" id="nombreEdit" class="form-control" required>
@@ -261,7 +262,7 @@
         </div>
         <div class="form-group">
           <label for="imagen">Imagen</label>
-          <input type="file" name="imagen" id="imagen" class="form-control" required>
+          <input type="file" name="imagen" id="imagen" class="form-control">
         </div>
         <div class="form-group">
           <label for="inventarioEdit">Inventario</label>
@@ -289,7 +290,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary editar">Guardar</button>
       </div>
     </form>
     </div>
@@ -370,6 +371,7 @@
       $("#categoriaEdit").val(categoria);
       $("#tallaEdit").val(talla);
       $("#colorEdit").val(color);
+      $("#idEdit").val(idEditar);
   });
   });
 </script>
