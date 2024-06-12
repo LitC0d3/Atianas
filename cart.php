@@ -16,6 +16,7 @@ include './php/conexion.php';
     if($encontro == true){
       $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+1;
       $_SESSION['carrito']=$arreglo;
+      header("Location: ./cart.php");
     }else{
       //no estaba el registro
       $nombre ="";
@@ -36,6 +37,7 @@ include './php/conexion.php';
       );
       array_push($arreglo, $arregloNuevo);
       $_SESSION['carrito']=$arreglo;
+      header("Location: ./cart.php");
     }
   }
   }else{
@@ -58,6 +60,7 @@ include './php/conexion.php';
         'Cantidad' => 1
       );
       $_SESSION['carrito']=$arreglo;
+      header("Location: ./cart.php");
     }
   }
 ?>
