@@ -101,6 +101,7 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Descripción</th>
+            <th>Precio</th>
             <th>Inventario</th>
             <th>Categoría</th>
             <th>Talla</th>
@@ -119,6 +120,7 @@
                 <?php echo $f['nombre']; ?>
               </td>
               <td><?php echo $f['descripcion']; ?></td>
+              <td><?php echo number_format($f['precio'],2,'.',''); ?></td>
               <td><?php echo $f['inventario']; ?></td>
               <td><?php echo $f['catego']; ?></td>
               <td><?php echo $f['talla']; ?></td>
@@ -128,6 +130,7 @@
               data-id="<?php echo $f['id']; ?>" 
               data-nombre="<?php echo $f['nombre']; ?>"
               data-descripcion="<?php echo $f['descripcion']; ?>" 
+              data-precio="<?php echo $f['precio']; ?>"
               data-inventario="<?php echo $f['inventario']; ?>"
               data-categoria="<?php echo $f['id_categoria']; ?>"
               data-talla="<?php echo $f['talla']; ?>"
@@ -232,7 +235,6 @@
     </div>
   </div>
 </div>
-
   <!-- Modal Editar-->
   <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditar" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -246,28 +248,28 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="nombre">Nombre</label>
-          <input type="nombreEdit" name="nombre" placeholder="nombre" id="nombreEdit" class="form-control" required>
+          <label for="nombreEdit">Nombre</label>
+          <input type="text" name="nombre" placeholder="nombre" id="nombreEdit" class="form-control" required>
         </div>
         <div class="form-group">
-          <label for="descripcion">Descripcion</label>
-          <input type="descripcionEdit" name="descripcion" placeholder="descripcion" id="descripcionEdit" class="form-control" required>
+          <label for="descripcionEdit">Descripcion</label>
+          <input type="text" name="descripcion" placeholder="descripcion" id="descripcionEdit" class="form-control" required>
         </div>
         <div class="form-group">
-          <label for="precio">Precio</label>
-          <input type="precioEdit" min="0" name="precio" placeholder="precio" id="precioEdit" class="form-control" required>
+          <label for="precioEdit">Precio</label>
+          <input type="number" min="0" name="precio" placeholder="precio" id="precioEdit" class="form-control" required>
         </div>
         <div class="form-group">
           <label for="imagen">Imagen</label>
           <input type="file" name="imagen" id="imagen" class="form-control" required>
         </div>
         <div class="form-group">
-          <label for="descripcion">Inventario</label>
-          <input type="descripcionEdit" min="0" name="inventario" placeholder="inventario" id="inventarioEdit" class="form-control" required>
+          <label for="inventarioEdit">Inventario</label>
+          <input type="number" min="0" name="inventario" placeholder="inventario" id="inventarioEdit" class="form-control" required>
         </div>
         <div class="form-group">
-          <label for="categoria">Categoria</label>
-          <select name="categoriaEdit" id="categoriaEdit" class="form-control" required>
+          <label for="categoriaEdit">Categoria</label>
+          <select name="categoria" id="categoriaEdit" class="form-control" required>
             <?php 
             $res= $conexion->query("select * from categorias");
             while($f=mysqli_fetch_array($res)){
@@ -277,12 +279,12 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="talla">Talla</label>
-          <input type="tallaEdit" name="talla" placeholder="talla" id="tallaEdit" class="form-control" required>
+          <label for="tallaEdit">Talla</label>
+          <input type="text" name="talla" placeholder="talla" id="tallaEdit" class="form-control" required>
         </div>
         <div class="form-group">
-          <label for="color">Color</label>
-          <input type="colorEdit" name="color" placeholder="color" id="colorEdit" class="form-control" required>
+          <label for="colorEdit">Color</label>
+          <input type="text" name="color" placeholder="color" id="colorEdit" class="form-control" required>
         </div>
       </div>
       <div class="modal-footer">
@@ -293,6 +295,7 @@
     </div>
   </div>
 </div>
+
 <?php include "./layouts/footer.php"; ?>
 </div>
 <!-- ./wrapper -->
@@ -334,6 +337,7 @@
 <script>
   $(document).ready(function(){
     var idEliminar= -1;
+    var idEditar= -1;
     var fila;
     $(".btnEliminar").click(function(){
       idEliminar= $(this).data('id');
@@ -349,23 +353,25 @@
       }).done(function(res){
         $(fila).fadeOut(1000);
       });
-    });
-    $(".btnEditar").click(function() {
-  idEditar = $(this).data('id');
-  var nombre = $(this).data('nombre');
-  var descripcion = $(this).data('descripcion');
-  var inventario = $(this).data('inventario');
-  var categoria = $(this).data('categoria');
-  var talla = $(this).data('talla');
-  var color = $(this).data('color');
-
-  $("#nombreEdit").val(nombre);
-  $("#descripcionEdit").val(descripcion);
-  $("#inventarioEdit").val(inventario);
-  $("#categoriaEdit").val(categoria);
-  $("#tallaEdit").val(talla);
-  $("#colorEdit").val(color);
-});
+  });
+  $(".btnEditar").click(function(){
+      idEditar=$(this).data('id');
+      var nombre=$(this).data('nombre');
+      var descripcion=$(this).data('descripcion');
+      var inventario=$(this).data('inventario');
+      var precio=$(this).data('precio');
+      var categoria=$(this).data('categoria');
+      var talla=$(this).data('talla');
+      var color=$(this).data('color');
+      $("#nombreEdit").val(nombre);
+      $("#descripcionEdit").val(descripcion);
+      $("#inventarioEdit").val(inventario);
+      $("#precioEdit").val(precio);
+      $("#categoriaEdit").val(categoria);
+      $("#tallaEdit").val(talla);
+      $("#colorEdit").val(color);
+  });
+  });
 </script>
 </body>
 </html>
