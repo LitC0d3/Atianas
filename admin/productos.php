@@ -375,5 +375,13 @@
   });
   });
 </script>
+<script>
+    // Eliminar el parámetro 'success' de la URL después de mostrar la alerta
+    $(document).ready(function() {
+        $('.alert').on('closed.bs.alert', function() {
+            window.history.replaceState(null, null, window.location.pathname);
+        });
+    });
+</script>
 </body>
 </html>

@@ -29,17 +29,27 @@ if (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['pre
                     " . $_POST['categoria'] . ",
                     '" . $_POST['inventario'] . "'
                 )") or die($conexion->error);
-                header("Location: ../admin/productos.php?success");
+                $params = ['success' => true];
+                header("Location: ../admin/productos.php?" . http_build_query($params));
+                exit;
             } else {
-                header("Location: ../admin/productos.php?error=No se Pudo Subir la Imagen");
+                $params = ['error' => 'No se Pudo Subir la Imagen'];
+                header("Location: ../admin/productos.php?" . http_build_query($params));
+                exit;
             }
         } else {
-            header("Location: ../admin/productos.php?error=Porfavor Subir un Archivo Valido (jpg o png)");
+            $params = ['error' => 'Porfavor Subir un Archivo Valido (jpg o png)'];
+            header("Location: ../admin/productos.php?" . http_build_query($params));
+            exit;
         }
     } else {
-        header("Location: ../admin/productos.php?error=No se Selecciono Ninguna Imagen");
+        $params = ['error' => 'No se Selecciono Ninguna Imagen'];
+        header("Location: ../admin/productos.php?" . http_build_query($params));
+        exit;
     }
 } else {
-    header("Location: ../admin/productos.php?error=Porfavor Rellena Todos Los Campos");
+    $params = ['error' => 'Porfavor Rellena Todos Los Campos'];
+    header("Location: ../admin/productos.php?" . http_build_query($params));
+    exit;
 }
 ?>
