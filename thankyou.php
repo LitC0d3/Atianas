@@ -26,7 +26,7 @@ $conexion -> query("insert into usuario(nombre,telefono,email,password,img_perfi
 $id_usuario = $conexion->insert_id;
        
 $fecha = date('Y-m-d-h:m:s');
-$conexion -> query("insert into ventas(id_usuario,total,fecha) values($id_usuario,$total,'$fecha')") or die($conexion->error);
+$conexion -> query("insert into ventas(id_usuario,total,fecha,status) values($id_usuario,$total,'$fecha','preparacion')") or die($conexion->error);
 $id_venta = $conexion ->insert_id;
 
 for($i=0; $i<count($arreglo);$i++){
