@@ -1,0 +1,18 @@
+Credenciales Vendedor
+APP_USR-2084311000183156-061911-53d2a67fea0fe2a54f220bc5aab1f666-1718994090
+
+TESTING
+APP_USR-8878195255141821-061913-582a8d02eff29a3675a6eb61a30b6083-1863656975
+
+
+CMD para usuarios de Prueba
+curl -X POST -H "Content-Type: application/json" "https://api.mercadopago.com/users/test_user?access_token=APP_USR-2084311000183156-061911-53d2a67fea0fe2a54f220bc5aab1f666-1718994090" -d "{'site_id':'MPE'}"
+
+
+USUARIOS DE PRUEBA
+
+VENDEDOR
+{"id":1866170184,"email":"test_user_185264586@testuser.com","nickname":"TESTUSER185264586","site_status":"active","password":"XDY2CoovgZ"}
+
+COMPRADOR
+{"id":1863656975,"email":"test_user_431210901@testuser.com","nickname":"TESTUSER431210901","site_status":"active","password":"YObbesmDFw"}
