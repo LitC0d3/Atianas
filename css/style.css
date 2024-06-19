@@ -751,3 +751,16 @@ a {
   width: 120px;
   border-radius: 50%;
   margin-bottom: 20px; }
+
+  .mercado-pago-container {
+    display: left;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+img.mercado-pago-logo {
+    max-width: 50px;
+    height: auto;
+    margin-left: 10px;
+    display: left;
+}
