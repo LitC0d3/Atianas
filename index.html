@@ -19,16 +19,20 @@
 
     <link rel="stylesheet" href="css/aos.css">
 
+    <link rel="stylesheet" href="Recursos/Css/Encabezado/style.css">
     <link rel="stylesheet" href="Recursos/Css/Seccion/01.css">
+    <link rel="stylesheet" href="Recursos/Css/Seccion/02.css">
 
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
   </head>
   <body>
 
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <header class="px-4 pt-3">
+      <nav class="navbar navbar-expand-lg navbar-light">
           <a class="navbar-brand" href="#">
               <img src="Recursos/Img/Header/atianas.ico" alt="Logo Atianas" style="height: 40px;">
           </a>
@@ -38,16 +42,16 @@
           <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav mx-auto">
                   <li class="nav-item active">
-                      <a class="nav-link" href="#">Inicio</a>
+                      <a class="nav-link" href="index.html">Inicio</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#">Nosotros</a>
+                      <a class="nav-link" href="#nosotros">Nosotros</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="#">Explorar</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#">Comprar</a>
+                      <a class="nav-link" href="#">Shop</a>
                   </li>
               </ul>
               <ul class="navbar-nav">
@@ -63,52 +67,92 @@
               </ul>
           </div>
       </nav>
-  </header>
+    </header>
 
-  <section class="home">
-    <video class="video-slide active" src="Recursos/Multimedia/home.mp4" autoplay muted loop></video>
-    <video class="video-slide" src="2.mp4" autoplay muted loop></video>
-    <video class="video-slide" src="3.mp4" autoplay muted loop></video>
-    <video class="video-slide" src="4.mp4" autoplay muted loop></video>
-    <video class="video-slide" src="5.mp4" autoplay muted loop></video>
-    <div class="content active">
-      <h1>Atiana´s<br><span>Tienda de Bisuteria</span></h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, error voluptatem. Tempore, adipisci aperiam, sunt, dicta non nulla ipsum nam tempora laboriosam labore laudantium. Placeat a earum cumque temporibus iure. </p>
-      <a href="#">Leer mas...</a>
-    </div>
-    <div class="content">
-      <h1>Campo<br><span>Trabajo</span></h1>
-      <p>Insertar texto</p>
-      <a href="#">Leer mas...</a>
-    </div>
-    <div class="content">
-      <h1>Especialidades.<br><span>Personalizadas</span></h1>
-      <p>Insertar texto</p>
-      <a href="#">Leer mas...</a>
-    </div>
-    <div class="content">
-      <h1>Objetivos.<br><span>Finalidades</span></h1>
-      <p>Insertar texto</p>
-      <a href="#">Leer mas...</a>
-    </div>
-    <div class="content">
-      <h1>Director.<br><span>Informacion</span></h1>
-      <p>Insertar texto</p>
-      <a href="#">Leer mas...</a>
-    </div>
-    <div class="media-icons">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-    </div>
-    <div class="slider-navigation">
-      <div class="nav-btn active"></div>
-      <div class="nav-btn"></div>
-      <div class="nav-btn"></div>
-      <div class="nav-btn"></div>
-      <div class="nav-btn"></div>
-    </div>
-  </section>
+    <!--HOME-->
+    <section class="home" id="inicio">
+      <video class="video-slide active" src="Recursos/Multimedia/home.mp4" autoplay muted loop></video>
+      <video class="video-slide" src="2.mp4" autoplay muted loop></video>
+      <video class="video-slide" src="3.mp4" autoplay muted loop></video>
+      <video class="video-slide" src="4.mp4" autoplay muted loop></video>
+      <video class="video-slide" src="5.mp4" autoplay muted loop></video>
+      <div class="container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="content active">
+                    <h1>Atiana´s<br><span>Tienda de Bisutería</span></h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, error voluptatem. Tempore, adipisci aperiam, sunt, dicta non nulla ipsum nam tempora laboriosam labore laudantium. Placeat a earum cumque temporibus iure. </p>
+                    <a href="#" class="btn btn-primary">Leer más...</a>
+                </div>
+                <div class="content">
+                    <h1>Campo<br><span>Trabajo</span></h1>
+                    <p>Insertar texto</p>
+                    <a href="#" class="btn btn-primary">Leer más...</a>
+                </div>
+                <div class="content">
+                    <h1>Especialidades.<br><span>Personalizadas</span></h1>
+                    <p>Insertar texto</p>
+                    <a href="#" class="btn btn-primary">Leer más...</a>
+                </div>
+                <div class="content">
+                    <h1>Objetivos.<br><span>Finalidades</span></h1>
+                    <p>Insertar texto</p>
+                    <a href="#" class="btn btn-primary">Leer más...</a>
+                </div>
+                <div class="content">
+                    <h1>Director.<br><span>Información</span></h1>
+                    <p>Insertar texto</p>
+                    <a href="#" class="btn btn-primary">Leer más...</a>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="media-icons">
+          <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+      </div>
+
+      <div class="slider-navigation">
+          <div class="nav-btn active"></div>
+          <div class="nav-btn"></div>
+          <div class="nav-btn"></div>
+          <div class="nav-btn"></div>
+          <div class="nav-btn"></div>
+      </div>
+    </section>
+
+    <!--NOSOTROS-->
+    <section id="nosotros">
+
+      <div class="container-fluid pt-5 p-0">
+        <div class="card mb-3 mx-auto border-0 px-4 pt-5">
+            <div class="row g-0 pb-5">
+                <div class="col-md-6 p-5">
+                    <div class="d-flex px-5 pt-4 pb-5">
+                        <div class="container pt-5">
+                            <img src="Recursos/Img/nosotros.webp" class="img-fluid w-100 h-100" style="object-fit: cover; transition: all 600ms; transform: translateY(-100px);" alt="Alternate Text" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body pt-md-5 pt-5" style=" padding-right: 40px;">
+                        <h1 class="card-title display-3" style="font-weight: bold;">Atianas</h1>
+                        <p class="card-text pt-3 fs-5">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit repudiandae sequi quo, quis veniam nulla omnis cumque ipsum illum nobis rerum quasi voluptatum neque pariatur eos nihil laborum error. Debitis.
+                        </p>
+                        <p class="card-text">
+                            <small class="text-muted">Mas información </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    </section>
+
 
   <script>
     //slider
