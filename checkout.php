@@ -28,7 +28,11 @@ $arreglo = $_SESSION['carrito'];
     
   </head>
   <body>
+    <script src="https://www.paypal.com/sdk/js?client-id=AcyJ5Lx9YbRF0s5Qv0MvtIu-6Ei5T1u-9_u5h9xHoYRIFlgifxaUSKSQXsVH63Uymyb11Si96VxKXQwZ&currency=USD">
+    </script>
   
+
+
   <div class="site-wrap">
     <?php include("./layouts/header.php"); ?> 
     <form action="./thankyou.php" method="post">
@@ -274,9 +278,13 @@ $arreglo = $_SESSION['carrito'];
                     <div class="collapse" id="collapsepaypal">
                       <div class="py-2">
                         <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                        <div id="paypal-button-container"></div>
                       </div>
                     </div>
-                  </div>
+                  </div> 
+                </div>
+                  
+                  
 
                   <div class="form-group">
                     <button class="btn btn-primary btn-lg py-3 btn-block" type="submit">Place Order</button>
@@ -303,6 +311,26 @@ $arreglo = $_SESSION['carrito'];
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
-    
+  
+  <script>
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '500'
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          console.log(details);
+          alert('Transaction completed by '+ details.payer.name.given_name + '!');
+        });
+      }
+    }).render('#paypal-button-container');
+  </script>
+
   </body>
 </html>
