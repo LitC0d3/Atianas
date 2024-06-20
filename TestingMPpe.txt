@@ -11,8 +11,8 @@ curl -X POST -H "Content-Type: application/json" "https://api.mercadopago.com/us
 
 USUARIOS DE PRUEBA
 
-VENDEDOR
+COMPRADOR
 {"id":1866170184,"email":"test_user_185264586@testuser.com","nickname":"TESTUSER185264586","site_status":"active","password":"XDY2CoovgZ"}
 
-COMPRADOR
+VENDEDOR
 {"id":1863656975,"email":"test_user_431210901@testuser.com","nickname":"TESTUSER431210901","site_status":"active","password":"YObbesmDFw"}

@@ -28,14 +28,11 @@ $arreglo = $_SESSION['carrito'];
     
   </head>
   <body>
-    <script src="https://www.paypal.com/sdk/js?client-id=AcyJ5Lx9YbRF0s5Qv0MvtIu-6Ei5T1u-9_u5h9xHoYRIFlgifxaUSKSQXsVH63Uymyb11Si96VxKXQwZ&currency=USD">
-    </script>
-  
-
+    
 
   <div class="site-wrap">
     <?php include("./layouts/header.php"); ?> 
-    <form action="./thankyou.php" method="post">
+    <form action="./php/insertarpedido.php" method="post">
     <div class="site-section">
       <div class="container">
         <div class="row mb-5">
@@ -252,36 +249,6 @@ $arreglo = $_SESSION['carrito'];
                     </tbody>
                   </table>
 
-                  <div class="border p-3 mb-3">
-                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Direct Bank Transfer</a></h3>
-
-                    <div class="collapse" id="collapsebank">
-                      <div class="py-2">
-                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="border p-3 mb-3">
-                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque" role="button" aria-expanded="false" aria-controls="collapsecheque">Cheque Payment</a></h3>
-
-                    <div class="collapse" id="collapsecheque">
-                      <div class="py-2">
-                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="border p-3 mb-5">
-                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsepaypal" role="button" aria-expanded="false" aria-controls="collapsepaypal">Paypal</a></h3>
-
-                    <div class="collapse" id="collapsepaypal">
-                      <div class="py-2">
-                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                        <div id="paypal-button-container"></div>
-                      </div>
-                    </div>
-                  </div> 
                 </div>
                   
                   
@@ -312,25 +279,6 @@ $arreglo = $_SESSION['carrito'];
 
   <script src="js/main.js"></script>
   
-  <script>
-    paypal.Buttons({
-      createOrder: function(data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '500'
-            }
-          }]
-        });
-      },
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          console.log(details);
-          alert('Transaction completed by '+ details.payer.name.given_name + '!');
-        });
-      }
-    }).render('#paypal-button-container');
-  </script>
-
+  
   </body>
 </html>
