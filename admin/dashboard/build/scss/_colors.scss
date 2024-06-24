@@ -12,21 +12,6 @@
   @include background-variant($name, $color);
 }
 
-@media print {
-  .table td,
-  .table th {
-    // Background colors (theme colors)
-    @each $name, $color in $theme-colors {
-      @include background-variant($name, $color);
-    }
-
-    // Background colors (colors)
-    @each $name, $color in $colors {
-      @include background-variant($name, $color);
-    }
-  }
-}
-
 .bg-gray {
   background-color: $gray-500;
   color: color-yiq($gray-500);
@@ -105,7 +90,7 @@ a.text-muted:hover {
   }
 }
 
-@include dark-mode () {
+.dark-mode {
   .bg-light {
     background-color: lighten($dark, 7.5%) !important;
     color: $white !important;
@@ -114,7 +99,7 @@ a.text-muted:hover {
   .text-dark,
   .link-black,
   .link-dark {
-    color: $gray-400 !important;
+    color: $gray-400;
   }
 
   // Background colors (theme colors)
@@ -153,10 +138,6 @@ a.text-muted:hover {
   // Accent colors (colors)
   @each $name, $color in $colors-alt {
     @include accent-variant($name, $color);
-  }
-
-  .border-dark {
-    border-color: lighten($dark, 10%) !important;
   }
 }
 

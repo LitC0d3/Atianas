@@ -45,13 +45,13 @@
       display: none;
     }
 
-    .sidebar .nav-sidebar .nav-link p {
+    .nav-sidebar .nav-link p {
       width: 0;
       white-space: nowrap;
     }
 
     .sidebar .user-panel > .info,
-    .sidebar .nav-sidebar .nav-link p,
+    .nav-sidebar .nav-link p,
     .brand-text {
       margin-left: -10px;
       animation-name: fadeOut;
@@ -92,57 +92,55 @@
         }
       }
 
-      &:not(.sidebar-no-expand) {
-        &:hover,
-        &.sidebar-focused {
+      &:hover,
+      &.sidebar-focused {
+        width: $sidebar-width;
+
+        .brand-link {
           width: $sidebar-width;
+        }
 
-          .brand-link {
-            width: $sidebar-width;
+        .user-panel {
+          text-align: left;
+
+          .image {
+            float: left;
           }
+        }
 
-          .user-panel {
-            text-align: left;
+        .user-panel > .info,
+        .nav-sidebar .nav-link p,
+        .brand-text,
+        .logo-xl {
+          display: inline-block;
+          margin-left: 0;
+          animation-name: fadeIn;
+          animation-duration: $transition-speed;
+          animation-fill-mode: both;
+          visibility: visible;
+        }
 
-            .image {
-              float: left;
-            }
-          }
+        .logo-xs {
+          animation-name: fadeOut;
+          animation-duration: $transition-speed;
+          animation-fill-mode: both;
+          visibility: hidden;
+        }
 
-          .user-panel > .info,
-          .sidebar .nav-sidebar .nav-link p,
-          .brand-text,
-          .logo-xl {
-            display: inline-block;
-            margin-left: 0;
-            animation-name: fadeIn;
-            animation-duration: $transition-speed;
-            animation-fill-mode: both;
-            visibility: visible;
-          }
+        .brand-image {
+          margin-right: .5rem;
+        }
 
-          .logo-xs {
-            animation-name: fadeOut;
-            animation-duration: $transition-speed;
-            animation-fill-mode: both;
-            visibility: hidden;
-          }
+        // Make the sidebar links, menus, labels, badges
+        // and angle icons disappear
+        .sidebar-form,
+        .user-panel > .info {
+          display: block !important;
+          transform: translateZ(0);
+        }
 
-          .brand-image {
-            margin-right: .5rem;
-          }
-
-          // Make the sidebar links, menus, labels, badges
-          // and angle icons disappear
-          .sidebar-form,
-          .user-panel > .info {
-            display: block !important;
-            transform: translateZ(0);
-          }
-
-          .nav-sidebar > .nav-item > .nav-link > span {
-            display: inline-block !important;
-          }
+        .nav-sidebar > .nav-item > .nav-link > span {
+          display: inline-block !important;
         }
       }
     }

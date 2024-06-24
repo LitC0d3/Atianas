@@ -86,27 +86,7 @@
     transition: transform $transition-speed linear;
   }
   &[aria-expanded="true"] {
-    i.expandable-table-caret {
-      // stylelint-disable selector-max-attribute
-      &[class*="right"] {
-        transform: rotate(90deg);
-      }
-      &[class*="left"] {
-        transform: rotate(-90deg);
-      }
-      // stylelint-enable selector-max-attribute
-    }
-  }
-}
-
-[aria-expanded="true"] {
-  cursor: pointer;
-
-  i.expandable-table-caret {
-    transition: transform $transition-speed linear;
-  }
-  [data-widget="expandable-table"] {
-    i.expandable-table-caret {
+    td i.expandable-table-caret {
       // stylelint-disable selector-max-attribute
       &[class*="right"] {
         transform: rotate(90deg);
@@ -143,7 +123,7 @@
   }
 }
 
-@include dark-mode () {
+.dark-mode {
   .table-bordered {
     &,
     td,

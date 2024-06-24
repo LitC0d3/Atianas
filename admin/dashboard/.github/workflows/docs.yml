@@ -4,14 +4,13 @@ on:
   push:
     branches:
       - master
-      - v4-dev
   pull_request:
     branches:
       - "**"
 
 env:
   FORCE_COLOR: 2
-  NODE: 16.x
+  NODE: 14.x
   RUBY: 2.7
 
 jobs:

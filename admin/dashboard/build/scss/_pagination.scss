@@ -42,7 +42,7 @@
   }
 }
 
-@include dark-mode () {
+.dark-mode {
   .page-item {
     &.disabled a,
     &.disabled .page-link {
@@ -58,7 +58,6 @@
     &.active {
       .page-link {
         background-color: $primary-alt;
-        border-color: $primary-alt;
         color: $white;
 
         &:hover,

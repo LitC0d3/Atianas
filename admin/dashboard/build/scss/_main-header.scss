@@ -58,7 +58,7 @@
 
 // Add this class to images within a nav-link
 .navbar-img {
-  height: calc(#{$main-header-height} * .5);
+  height: $main-header-height / 2;
   width: auto;
 }
 

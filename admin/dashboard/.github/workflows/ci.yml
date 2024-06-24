@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - v4-dev
   pull_request:
     branches:
       - "**"
@@ -20,8 +19,9 @@ jobs:
       fail-fast: false
       matrix:
         node:
+          - "10.x"
+          - "12.x"
           - "14.x"
-          - "16.x"
         os:
           - "ubuntu-latest"
           - "macos-latest"
@@ -58,6 +58,6 @@ jobs:
 
       - name: Run bundlewatch
         run: npm run bundlewatch
-        if: startsWith(matrix.os, 'ubuntu') && startsWith(matrix.node, '16')
+        if: startsWith(matrix.os, 'ubuntu') && startsWith(matrix.node, '14')
         env:
           BUNDLEWATCH_GITHUB_TOKEN: "${{ secrets.BUNDLEWATCH_GITHUB_TOKEN }}"
