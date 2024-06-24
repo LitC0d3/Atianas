@@ -8,6 +8,7 @@ url: https://adminlte.io
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-relative-links
 
 navigation:
   - title: Installation
