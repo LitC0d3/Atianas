@@ -2,7 +2,7 @@ title: AdminLTE v3 Documentation
 version: v3.1.0
 description: AdminLTE v3.1 Documentation
 
-baseurl: /docs/3.1
+baseurl: /docs
 url: https://adminlte.io
 
 plugins:
@@ -11,7 +11,7 @@ plugins:
 
 navigation:
   - title: Installation
-    url: index.html
+    url: '{{ site.baseurl }}/index.html'
     icon: fas fa-microchip
   - title: Dependencies & Plugins
     url: dependencies.html
