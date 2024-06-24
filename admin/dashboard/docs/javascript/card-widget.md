@@ -11,7 +11,7 @@ This plugin can be activated as a jQuery plugin or using the data API.
 
 #### Data API
 
-This plugin provides two `data-api` attributes. Any element using one of the following attributes should be placed within the `.card-tools` div, which is usually in the card header. For more information about the [card HTML structure]({% link components/cards.md %}), visit the card component documentation 
+This plugin provides two `data-api` attributes. Any element using one of the following attributes should be placed within the `.card-tools` div, which is usually in the card header. For more information about the [card HTML structure]{% link /admin/dashboard/docs/components/cards.md %}, visit the card component documentation 
 
 ##### `data-card-widget="collapse"`
 
