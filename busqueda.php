@@ -179,8 +179,8 @@ if (!isset($_GET['texto'])) {
                 $re = $conexion->query("select * from colores");
                 while ($f = mysqli_fetch_array($re)) {
                 ?>
-                  <a href="./busqueda.php?texto=<?php echo $f['color'];?>" class="d-flex color-item align-items-center">
-                    <span style="background-color:<?php echo $f['codigo'];?>" class="color d-inline-block rounded-circle mr-2"></span> <span class="text-black"><?php echo $f['color'];?></span>
+                  <a href="./busqueda.php?texto=<?php echo $f['color']; ?>" class="d-flex color-item align-items-center">
+                    <span style="background-color:<?php echo $f['codigo']; ?>" class="color d-inline-block rounded-circle mr-2"></span> <span class="text-black"><?php echo $f['color']; ?></span>
                   </a>
                 <?php } ?>
               </div>
@@ -252,6 +252,56 @@ if (!isset($_GET['texto'])) {
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: './php/obtener_productos.php', // Reemplaza con la URL correcta de tu backend
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          var precios = data.map(producto => parseFloat(producto.precio));
+
+          var minPrice = Math.min(...precios);
+          var maxPrice = Math.max(...precios);
+
+          initSlider(minPrice, maxPrice);
+        },
+        error: function(xhr, status, error) {
+          console.error("Error al obtener los datos:", error);
+        }
+      });
+    });
+
+    function initSlider(minPrice, maxPrice) {
+      $("#slider-range").slider({
+        range: true,
+        min: minPrice,
+        max: maxPrice,
+        values: [minPrice, maxPrice],
+        slide: function(event, ui) {
+          $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+        },
+        change: function(event, ui) {
+          filtrarProductos(ui.values[0], ui.values[1]);
+        }
+      });
+
+      $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+        " - $" + $("#slider-range").slider("values", 1));
+    }
+
+    function filtrarProductos(minPrice, maxPrice) {
+      $('div.col-sm-6.col-lg-4.mb-4').each(function() {
+        var precio = parseFloat($(this).find('.text-primary').text().replace('S/.', ''));
+        if (precio >= minPrice && precio <= maxPrice) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    }
+  </script>
 
 </body>
 
