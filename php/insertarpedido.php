@@ -40,6 +40,13 @@ for($i=0; $i<count($arreglo);$i++){
   ) ") or die($conexion->error);
    $conexion->query("update productos set inventario =inventario -".$arreglo[$i]['Cantidad']." where id=".$arreglo[$i]['Id'] )or die($conexion->error);
 }
+
+if(isset($_POST['id_cupon'])){
+  if($_POST['id_cupon']!=""){
+    $conexion->query("update cupones set status ='Utilizado' where id=".$_POST['id_cupon'])or die($conexion->error);
+  }
+}
+
 $conexion->query(" insert into envios(Contacto,Provincia,Distrito,direccion,cp,id_venta)  
   values
     (

@@ -208,13 +208,18 @@ $arreglo = $_SESSION['carrito'];
                 <div class="p-3 p-lg-5 border">
                   
                   <label for="c_code" class="text-black mb-3">Enter your coupon code if you have one</label>
-                  <div class="input-group w-75">
+                  <div class="input-group w-75" id="formCupon">
                     <input type="text" class="form-control" id="c_code" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
                     <div class="input-group-append">
                       <button class="btn btn-primary btn-sm" type="button" id="button-addon2">Apply</button>
+                      <br> </br>
                     </div>
                   </div>
-
+                  <h2 id="error" style="display:none" class="text-danger">Cupon no valido</h2>
+                  <div class="input-group w-75" id="datosCupon" style="display:none"> 
+                <h2 id="textoCupon" class="text-success"></h2>
+                </div>
+                <input type="hidden" name="id_cupon" id="id_cupon">
                 </div>
               </div>
             </div>
@@ -279,6 +284,36 @@ $arreglo = $_SESSION['carrito'];
 
   <script src="js/main.js"></script>
   
-  
+  <script>
+    $("#button-addon2").click(function(){
+  var codigo = $("#c_code").val();
+  $.ajax({
+    url: "./php/validarcodigo.php",
+    data: {
+      codigo:codigo
+    },
+    method: 'POST'
+  }).done(function(respuesta){
+    if(respuesta == "error" || respuesta == "Codigo no valido"){
+      $("#error").show();
+      $("#id_cupon").val();
+    }else{
+      var arreglo = JSON.parse(respuesta);
+      if(arreglo.tipo == "moneda"){
+        $("#textoCupon").text("El cupon es de tipo moneda y tiene un valor de: "+arreglo.valor+" soles");
+      }else{
+        $("#textoCupon").text("El cupon es de tipo porcentaje y tiene un valor de: "+arreglo.valor+"% en su compra");
+      }
+      $("#formCupon").hide();
+      $("#datosCupon").show();
+      $("#id_cupon").val(arreglo.id);
+    }
+    })
+  });
+  $("#c_code").keyup(function(){
+    $("#error").hide();
+});
+  </script>
+
   </body>
 </html>
