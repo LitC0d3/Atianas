@@ -1,41 +1,43 @@
 <?php
-  include("./php/conexion.php");
-  if( isset($_GET['id'])){
-    $resultado = $conexion ->query("select * from productos where id=".$_GET['id'])or die($conexion->error);
-    if(mysqli_num_rows($resultado) > 0 ){
-      $fila = mysqli_fetch_row($resultado);
-    }else{
-      header("Location: ./index.php");
-    }
-  }else{
+include("./php/conexion.php");
+if (isset($_GET['id'])) {
+  $resultado = $conexion->query("select * from productos where id=" . $_GET['id']) or die($conexion->error);
+  if (mysqli_num_rows($resultado) > 0) {
+    $fila = mysqli_fetch_row($resultado);
+  } else {
     header("Location: ./index.php");
   }
+} else {
+  header("Location: ./index.php");
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Tienda</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+<head>
+  <title>Tienda</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-    <link rel="stylesheet" href="css/style.css">
-    
-  </head>
-  <body>
-  
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/aos.css">
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
   <div class="site-wrap">
-    <?php include("./layouts/header.php"); ?> 
+    <?php include("./layouts/header.php"); ?>
 
     <div class="site-section">
       <div class="container">
@@ -63,14 +65,14 @@
             </div>
             <div class="mb-5">
               <div class="input-group mb-3" style="max-width: 120px;">
-              <div class="input-group-prepend">
-                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                </div>
+                <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                </div>
               </div>
-              <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-              <div class="input-group-append">
-                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-              </div>
-            </div>
 
             </div>
             <p><a href="cart.php?id=<?php echo $fila[0]; ?>" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
@@ -155,7 +157,7 @@
         </div>
       </div>
     </div>
-    <?php include("./layouts/footer.php"); ?> 
+    <?php include("./layouts/footer.php"); ?>
   </div>
 
   <script src="js/jquery-3.3.1.min.js"></script>
@@ -167,6 +169,7 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
-    
-  </body>
+
+</body>
+
 </html>

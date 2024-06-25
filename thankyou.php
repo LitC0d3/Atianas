@@ -1,34 +1,36 @@
 <?php
-if (isset($_GET['id_venta']) && isset($_GET['metodo'])){
-include "./php/conexion.php";
-$conexion->query("insert into pagos (id_venta,metodo) values(".$_GET['id_venta'].",'".$_GET['metodo']."')")or die($conexion->error);
-header("Location: ./thankyou.php?id_venta=".$_GET['id_venta']);
+if (isset($_GET['id_venta']) && isset($_GET['metodo'])) {
+  include "./php/conexion.php";
+  $conexion->query("insert into pagos (id_venta,metodo) values(" . $_GET['id_venta'] . ",'" . $_GET['metodo'] . "')") or die($conexion->error);
+  header("Location: ./thankyou.php?id_venta=" . $_GET['id_venta']);
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-   <title>Tienda</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+<head>
+  <title>Tienda</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/style.css">
-    
-  </head>
-  <body>
-  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
   <div class="site-wrap">
-   <?php include("./layouts/header.php"); ?> 
+    <?php include("./layouts/header.php"); ?>
 
     <div class="site-section">
       <div class="container">
@@ -43,7 +45,7 @@ header("Location: ./thankyou.php?id_venta=".$_GET['id_venta']);
       </div>
     </div>
 
-    <?php include("./layouts/footer.php"); ?> 
+    <?php include("./layouts/footer.php"); ?>
 
   </div>
 
@@ -55,6 +57,7 @@ header("Location: ./thankyou.php?id_venta=".$_GET['id_venta']);
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/aos.js"></script>
   <script src="js/main.js"></script>
-    
-  </body>
+
+</body>
+
 </html>

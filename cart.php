@@ -1,34 +1,34 @@
 <?php
 session_start();
 include './php/conexion.php';
-  if(isset($_SESSION['carrito'])){
-    //si existe buscamos si ya estaba agregado ese producto
-    if(isset($_GET['id'])){
-      $arreglo = $_SESSION['carrito'];
-      $encontro=false;
-      $numero = 0;
-      for($i=0;$i<count($arreglo);$i++){
-        if($arreglo[$i]['Id'] == $_GET['id']){
-          $encontro=true;
-          $numero=$i;
+if (isset($_SESSION['carrito'])) {
+  //si existe buscamos si ya estaba agregado ese producto
+  if (isset($_GET['id'])) {
+    $arreglo = $_SESSION['carrito'];
+    $encontro = false;
+    $numero = 0;
+    for ($i = 0; $i < count($arreglo); $i++) {
+      if ($arreglo[$i]['Id'] == $_GET['id']) {
+        $encontro = true;
+        $numero = $i;
+      }
     }
-    }
-    if($encontro == true){
-      $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+1;
-      $_SESSION['carrito']=$arreglo;
+    if ($encontro == true) {
+      $arreglo[$numero]['Cantidad'] = $arreglo[$numero]['Cantidad'] + 1;
+      $_SESSION['carrito'] = $arreglo;
       header("Location: ./cart.php");
-    }else{
+    } else {
       //no estaba el registro
-      $nombre ="";
-      $precio ="";
-      $imagen ="";
+      $nombre = "";
+      $precio = "";
+      $imagen = "";
 
-      $res= $conexion->query('select * from productos where id='.$_GET['id'])or die($conexion->error);
+      $res = $conexion->query('select * from productos where id=' . $_GET['id']) or die($conexion->error);
       $fila = mysqli_fetch_row($res);
-      $nombre=$fila[1];
+      $nombre = $fila[1];
       $precio = $fila[3];
       $imagen = $fila[4];
-      $arregloNuevo= array(
+      $arregloNuevo = array(
         'Id' => $_GET['id'],
         'Nombre' => $nombre,
         'Precio' => $precio,
@@ -36,60 +36,62 @@ include './php/conexion.php';
         'Cantidad' => 1
       );
       array_push($arreglo, $arregloNuevo);
-      $_SESSION['carrito']=$arreglo;
+      $_SESSION['carrito'] = $arreglo;
       header("Location: ./cart.php");
     }
   }
-  }else{
-    //CREACION DE LA VARIABLE DE SESSION
-    if(isset($_GET['id'])){
-      $nombre ="";
-      $precio ="";
-      $imagen ="";
+} else {
+  //CREACION DE LA VARIABLE DE SESSION
+  if (isset($_GET['id'])) {
+    $nombre = "";
+    $precio = "";
+    $imagen = "";
 
-      $res= $conexion->query('select * from productos where id='.$_GET['id'])or die($conexion->error);
-      $fila = mysqli_fetch_row($res);
-      $nombre=$fila[1];
-      $precio = $fila[3];
-      $imagen = $fila[4];
-      $arreglo[] = array(
-        'Id' => $_GET['id'],
-        'Nombre' => $nombre,
-        'Precio' => $precio,
-        'Imagen' => $imagen,
-        'Cantidad' => 1
-      );
-      $_SESSION['carrito']=$arreglo;
-      header("Location: ./cart.php");
-    }
+    $res = $conexion->query('select * from productos where id=' . $_GET['id']) or die($conexion->error);
+    $fila = mysqli_fetch_row($res);
+    $nombre = $fila[1];
+    $precio = $fila[3];
+    $imagen = $fila[4];
+    $arreglo[] = array(
+      'Id' => $_GET['id'],
+      'Nombre' => $nombre,
+      'Precio' => $precio,
+      'Imagen' => $imagen,
+      'Cantidad' => 1
+    );
+    $_SESSION['carrito'] = $arreglo;
+    header("Location: ./cart.php");
   }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Tienda </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+<head>
+  <title>Tienda </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 
-    <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/aos.css">
 
-    <link rel="stylesheet" href="css/style.css">
-    
-  </head>
-  <body>
-  
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
   <div class="site-wrap">
-  <?php include("./layouts/header.php"); ?> 
+    <?php include("./layouts/header.php"); ?>
 
     <div class="site-section">
       <div class="container">
@@ -108,41 +110,39 @@ include './php/conexion.php';
                   </tr>
                 </thead>
                 <tbody>
-                  <?php 
+                  <?php
                   $total = 0;
-                  if(isset($_SESSION['carrito'])){
-                    $arregloCarrito =$_SESSION['carrito'];
-                    for($i=0;$i<count($arregloCarrito);$i++){
+                  if (isset($_SESSION['carrito'])) {
+                    $arregloCarrito = $_SESSION['carrito'];
+                    for ($i = 0; $i < count($arregloCarrito); $i++) {
                       $total = $total + ($arregloCarrito[$i]['Precio'] * $arregloCarrito[$i]['Cantidad']);
-                    ?>
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="images/<?php echo $arregloCarrito[$i]['Imagen']; ?>" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black"><?php echo $arregloCarrito[$i]['Nombre']; ?></h2>
-                    </td>
-                    <td>S/.<?php echo $arregloCarrito[$i]['Precio']; ?></td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus btnIncrementar" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center txtCantidad" 
-                        data-precio="<?php echo $arregloCarrito[$i]['Precio']; ?>" 
-                        data-id="<?php echo $arregloCarrito[$i]['Id']; ?>" 
-                        value="<?php echo $arregloCarrito[$i]['Cantidad']; ?>" 
-                        placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus btnIncrementar" type="button">&plus;</button>
-                        </div>
-                      </div>
+                  ?>
+                      <tr>
+                        <td class="product-thumbnail">
+                          <img src="images/<?php echo $arregloCarrito[$i]['Imagen']; ?>" alt="Image" class="img-fluid">
+                        </td>
+                        <td class="product-name">
+                          <h2 class="h5 text-black"><?php echo $arregloCarrito[$i]['Nombre']; ?></h2>
+                        </td>
+                        <td>S/.<?php echo $arregloCarrito[$i]['Precio']; ?></td>
+                        <td>
+                          <div class="input-group mb-3" style="max-width: 120px;">
+                            <div class="input-group-prepend">
+                              <button class="btn btn-outline-primary js-btn-minus btnIncrementar" type="button">&minus;</button>
+                            </div>
+                            <input type="text" class="form-control text-center txtCantidad" data-precio="<?php echo $arregloCarrito[$i]['Precio']; ?>" data-id="<?php echo $arregloCarrito[$i]['Id']; ?>" value="<?php echo $arregloCarrito[$i]['Cantidad']; ?>" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-primary js-btn-plus btnIncrementar" type="button">&plus;</button>
+                            </div>
+                          </div>
 
-                    </td>
-                    <td class="cant<?php echo $arregloCarrito[$i]['Id']; ?>">
-                     S/.<?php echo $arregloCarrito[$i]['Precio'] * $arregloCarrito[$i]['Cantidad']; ?></td><td><a href="#" class="btn btn-primary btn-sm btnEliminar" data-id="<?php echo $arregloCarrito[$i]['Id']; ?>">X</a></td>
-                  </tr>
-                  <?php } } ?>
+                        </td>
+                        <td class="cant<?php echo $arregloCarrito[$i]['Id']; ?>">
+                          S/.<?php echo $arregloCarrito[$i]['Precio'] * $arregloCarrito[$i]['Cantidad']; ?></td>
+                        <td><a href="#" class="btn btn-primary btn-sm btnEliminar" data-id="<?php echo $arregloCarrito[$i]['Id']; ?>">X</a></td>
+                      </tr>
+                  <?php }
+                  } ?>
                 </tbody>
               </table>
             </div>
@@ -209,7 +209,7 @@ include './php/conexion.php';
       </div>
     </div>
 
-    <?php include("./layouts/footer.php"); ?> 
+    <?php include("./layouts/footer.php"); ?>
   </div>
 
   <script src="js/jquery-3.3.1.min.js"></script>
@@ -222,50 +222,51 @@ include './php/conexion.php';
 
   <script src="js/main.js"></script>
   <script>
-    $(document).ready(function(){
-      $(".btnEliminar").click(function(event){
+    $(document).ready(function() {
+      $(".btnEliminar").click(function(event) {
         event.preventDefault();
         var id = $(this).data('id');
         var boton = $(this);
         $.ajax({
-          method:'POST',
-          url:'./php/eliminarCarrito.php',
-          data:{
-            id:id
+          method: 'POST',
+          url: './php/eliminarCarrito.php',
+          data: {
+            id: id
           }
-        }).done(function(respuesta){
+        }).done(function(respuesta) {
           boton.parent('td').parent('tr').remove();
         });
       });
-      $(".txtCantidad").keyup(function(){
+      $(".txtCantidad").keyup(function() {
         var cantidad = $(this).val();
         var precio = $(this).data('precio');
         var id = $(this).data('id');
-        incrementar(cantidad,precio,id);
+        incrementar(cantidad, precio, id);
       });
-      
-      $(".btnIncrementar").click(function(){
+
+      $(".btnIncrementar").click(function() {
         var precio = $(this).parent('div').parent('div').find('input').data('precio');
         var id = $(this).parent('div').parent('div').find('input').data('id');
         var cantidad = $(this).parent('div').parent('div').find('input').val();
-        incrementar(cantidad,precio,id);
+        incrementar(cantidad, precio, id);
       });
 
-      function incrementar(cantidad, precio, id){
-        var mult = parseFloat(cantidad)* parseFloat(precio);
-        $(".cant"+id).text("S/."+mult);
+      function incrementar(cantidad, precio, id) {
+        var mult = parseFloat(cantidad) * parseFloat(precio);
+        $(".cant" + id).text("S/." + mult);
         $.ajax({
-          method:'POST',
-          url:'./php/actualizarCarrito.php',
-          data:{
-            id:id,
-            cantidad:cantidad
+          method: 'POST',
+          url: './php/actualizarCarrito.php',
+          data: {
+            id: id,
+            cantidad: cantidad
           }
-        }).done(function(respuesta){
+        }).done(function(respuesta) {
 
         });
       }
     });
   </script>
-  </body>
+</body>
+
 </html>
