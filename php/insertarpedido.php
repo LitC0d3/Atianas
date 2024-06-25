@@ -13,7 +13,14 @@ if(isset($_POST['c_account_password'])){
       $password = $_POST['c_account_password']; 
   }
 }
-$conexion -> query("insert into usuario(nombre,telefono,email,password,img_perfil,nivel) 
+
+$re = $conexion -> query("select id from usuario where email = '".$_POST['c_email_address']."'")or die($conexion->error);
+$id_usuario = 0;
+if(mysqli_num_rows($re)>0){
+  $fila = mysqli_fetch_row ($re);
+  $id_usuario = $fila[0];
+} else {
+  $conexion -> query("insert into usuario(nombre,telefono,email,password,img_perfil,nivel) 
   values(
     '".$_POST['c_fname']." ".$_POST['c_lname']."',
     '".$_POST['c_phone']."',
@@ -24,7 +31,8 @@ $conexion -> query("insert into usuario(nombre,telefono,email,password,img_perfi
     )
 ") or die($conexion->error);
 $id_usuario = $conexion->insert_id;
-       
+}
+   
 $fecha = date('Y-m-d-h:m:s');
 $conexion -> query("insert into ventas(id_usuario,total,fecha,status) values($id_usuario,$total,'$fecha','preparacion')") or die($conexion->error);
 $id_venta = $conexion ->insert_id;

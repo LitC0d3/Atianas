@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('./php/conexion.php');
 if (!isset($_GET['texto'])) {
   header('Location: ./index.php');
