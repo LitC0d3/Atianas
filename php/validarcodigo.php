@@ -2,26 +2,27 @@
 include "conexion.php";
 
 if (isset($_POST['codigo'])) {
-    $respuesta = $conexion -> query("select * from cupones where codigo='".$_POST['codigo']."'");
-    if(mysqli_num_rows($respuesta) == 0){
+    $respuesta = $conexion->query("select * from cupones where codigo='" . $_POST['codigo'] . "'");
+    if (mysqli_num_rows($respuesta) == 0) {
         echo "Codigo no valido";
-    }else{
+    } else {
         $datos = mysqli_fetch_row($respuesta);
-        if($datos[2] != "Activo"){
+        if ($datos[2] != "Activo") {
             $arreglo = array(
-                'id' =>$datos[0],
-                'codigo' =>$datos[1],
-                'status' =>$datos[2],
-                'tipo' =>$datos[3],
-                'valor' =>$datos[4],
-                'fecha_vencimiento' =>$datos[5],
+                'id' => $datos[0],
+                'codigo' => $datos[1],
+                'status' => $datos[2],
+                'tipo' => $datos[3],
+                'valor' => $datos[4],
+                'fecha_vencimiento' => $datos[5],
             );
             echo json_encode($arreglo);
-        }else{
+        } else {
             echo "Codigo ya utilizado";
         }
-        }
-}else{
+    }
+} else {
     echo "error";
 }
+
 ?>

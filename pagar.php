@@ -24,16 +24,16 @@ $datos3 = $conexion->query("select productos_venta.*,
 $total = $datosUsuario[2];
 $descuento = "0";
 $banderadescuento = false;
-if ($datosUsuario[5] != 0) {
+if ($datosUsuario[6] != 0) {
     $banderadescuento = true;
     $cupon = $conexion->query("select * from cupones where id=" . $datosUsuario[6]);
     $filaCupon = mysqli_fetch_row($cupon);
-    if ($filaCupon[3] == 'moneda') {
-        $total = $total * $filaCupon[4];
+    if ($filaCupon[3] == "moneda") {
+        $total = $total - $filaCupon[4];
         $descuento = "S/. " + $filaCupon[4];
     } else {
-        $total = $total - ($total * $filaCupon[4] / 100);
-        $descuento = $filaCupon[4] + "% ";
+        $total = $total - ($total * ($filaCupon[4] / 100));
+        $descuento = $filaCupon[4]."% ";
     }
 }
 
@@ -41,7 +41,7 @@ if ($datosUsuario[5] != 0) {
 require __DIR__ . '/vendor/autoload.php';
 
 // Agrega credenciales
-MercadoPago\SDK::setAccessToken('APP_USR-8878195255141821-061913-582a8d02eff29a3675a6eb61a30b6083-1863656975');
+MercadoPago\SDK::setAccessToken('APP_USR-2084311000183156-061911-53d2a67fea0fe2a54f220bc5aab1f666-1718994090');
 
 // Crea un objeto de preferencia
 $preference = new MercadoPago\Preference();
