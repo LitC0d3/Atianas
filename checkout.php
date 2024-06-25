@@ -251,7 +251,18 @@ $arreglo = $_SESSION['carrito'];
                         <tr>
                           <td>Orden Total</td>
                           <td>S/.<?php echo number_format($total, 2 , '.', ''); ?></td>
-                    </tbody>
+                        </tr>
+                        <tr>
+                          <td class="text-success">
+                            Descuento
+                          </td>
+                          <td id="idTotal"> 0 </td>
+                        </tr>
+                        <tr>
+                          <td><b>Total Final</b></td>
+                          <td id="tdTotalFinal" data-total="<?php echo $total;?>">S/.<?php echo number_format($total, 2 , '.', ''); ?></td>
+                        </tr>
+                        </tbody>
                   </table>
 
                 </div>
@@ -301,8 +312,14 @@ $arreglo = $_SESSION['carrito'];
       var arreglo = JSON.parse(respuesta);
       if(arreglo.tipo == "moneda"){
         $("#textoCupon").text("El cupon es de tipo moneda y tiene un valor de: "+arreglo.valor+" soles");
+        $("#idTotal").text("S/."+arreglo.valor);
+        var total = parseFloat($("#tdTotalFinal").data('total')) - arreglo.valor;
+        $("#tdTotalFinal").text("S/."+total.toFixed(2));
       }else{
         $("#textoCupon").text("El cupon es de tipo porcentaje y tiene un valor de: "+arreglo.valor+"% en su compra");
+        $("#idTotal").text(arreglo.valor+" %");
+        var total = parseFloat($("#tdTotalFinal").data('total')) - ((arreglo.valor/100) * parseFloat($("#tdTotalFinal").data('total'))) ;
+        $("#tdTotalFinal").text(total.toFixed(2)+" %");
       }
       $("#formCupon").hide();
       $("#datosCupon").show();

@@ -8,7 +8,7 @@ $datos = $conexion->query("select
     ventas.*, 
     usuario.nombre, usuario.telefono, usuario.email 
     from ventas 
-    inner join usuario on ventas.id_usuario = usuario.id 
+    inner join usuario ON ventas.id_usuario = usuario.id 
     where ventas.id=".$_GET['id_venta'])or die($conexion->error);
 $datosUsuario = mysqli_fetch_row($datos);
 
@@ -19,6 +19,23 @@ $datos3 = $conexion->query("select productos_venta.*,
     productos.nombre as nombre_producto, productos.imagen 
     from productos_venta inner join productos on productos_venta.id_producto = productos.id 
     where id_venta=".$_GET['id_venta'])or die($conexion->error);
+
+
+$total = $datosUsuario[2];
+$descuento = "0";
+$banderadescuento = false;
+if($datosUsuario[5] != 0){
+    $banderadescuento = true;
+    $cupon = $conexion->query("select * from cupones where id=".$datosUsuario[6]);
+    $filaCupon = mysqli_fetch_row($cupon);
+    if($filaCupon[3] == 'moneda'){
+        $total = $total * $filaCupon[4];
+        $descuento = "S/. "+$filaCupon[4];
+    }else{
+        $total = $total - ($total * $filaCupon[4] / 100);
+        $descuento = $filaCupon[4]+"% ";
+    }
+}
 
 // SDK De Mercado Pago
 require __DIR__ . '/vendor/autoload.php';
@@ -37,12 +54,20 @@ $preference->auto_return = "approved";
 
 // Crea un ítem en la preferencia
 $datos=array();
+if($banderadescuento){
+    $item = new MercadoPago\Item();
+    $item->title = "Descuento por Cupon";
+    $item->quantity = 1;
+    $item->unit_price = $total;
+    $datos[]=$item;
+}else{
 while($f = mysqli_fetch_array($datos3)){
     $item = new MercadoPago\Item();
     $item->title = $f['nombre_producto'];
     $item->quantity = $f['cantidad'];
     $item->unit_price = $f['precio'];
     $datos[]=$item;   
+}
 }
 
 $preference->items = $datos;
@@ -94,40 +119,41 @@ $preference->save();
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="c_fname" class="text-black">Nombre <?php echo $datosUsuario[4]; ?></label>
+                                    <label for="c_fname" class="text-black">Nombre: <?php echo $datosUsuario[7]; ?></label>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="c_fname" class="text-black">Email <?php echo $datosUsuario[6]; ?></label>
+                                    <label for="c_fname" class="text-black">Email: <?php echo $datosUsuario[9]; ?></label>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="c_fname" class="text-black">Telefono <?php echo $datosUsuario[5]; ?></label>
+                                    <label for="c_fname" class="text-black">Telefono: <?php echo $datosUsuario[8]; ?></label>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="c_fname" class="text-black">Company <?php echo $datosEnvio[2]; ?></label>
+                                    <label for="c_fname" class="text-black">Company: <?php echo $datosEnvio[2]; ?></label>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="c_fname" class="text-black">Direccion <?php echo $datosEnvio[3]; ?></label>
+                                    <label for="c_fname" class="text-black">Direccion: <?php echo $datosEnvio[3]; ?></label>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="c_fname" class="text-black">Direccion <?php echo $datosEnvio[4]; ?></label>
+                                    <label for="c_fname" class="text-black">Direccion: <?php echo $datosEnvio[4]; ?></label>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </form>
                 </div>
                 <div class="col-md-5 ml-auto">
                 <h4 class="h1">Total: <?php echo $datosUsuario[2]; ?></h4>
-
+                <h5>Descuento: <?php echo $descuento; ?></h5>
+                <h5>Total a Pagar: <?php echo $total; ?></h5>
                 <form action="http://localhost/Atianas-1/thankyou.php?id_venta=.$_GET['id_venta']."&metodo=mercadopago" method="POST">
                 <script src="https://www.mercadopago.com.pe/integrations/v1/web-payment-checkout.js" 
                         data-preference-id="<?php echo $preference->id; ?>"
@@ -157,7 +183,7 @@ $preference->save();
         return actions.order.create({
           purchase_units: [{
             amount: {
-              value: '<?php echo $datosUsuario[2]; ?>'
+              value: '<?php echo $total; ?>'
             }
           }]
         });

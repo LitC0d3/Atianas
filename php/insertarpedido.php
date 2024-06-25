@@ -44,6 +44,7 @@ for($i=0; $i<count($arreglo);$i++){
 if(isset($_POST['id_cupon'])){
   if($_POST['id_cupon']!=""){
     $conexion->query("update cupones set status ='Utilizado' where id=".$_POST['id_cupon'])or die($conexion->error);
+    $conexion->query("update ventas set id_cupon =".$_POST['id_cupon']." where id=".$id_venta)or die($conexion->error);
   }
 }
 
