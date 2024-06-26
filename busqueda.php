@@ -47,14 +47,7 @@ if (!isset($_GET['texto'])) {
                 </div>
                 <div class="d-flex">
                   <div class="dropdown mr-1 ml-md-auto">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Latest
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                      <a class="dropdown-item" href="#">Men</a>
-                      <a class="dropdown-item" href="#">Women</a>
-                      <a class="dropdown-item" href="#">Children</a>
-                    </div>
+                    
                   </div>
                   <div class="btn-group">
                     <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
@@ -86,6 +79,17 @@ if (!isset($_GET['texto'])) {
 
                 while ($fila = mysqli_fetch_array($resultado)) {
 
+                  $limite = 10; //Productos por pagina
+              $totalQuery = $conexion->query("select count(*) from productos") or die($conexion->error);
+              $totalProductos = mysqli_fetch_row($totalQuery);
+              $totalBotones = round($totalProductos[0] / $limite);
+              if (isset($_GET['limite'])) {
+                $resultado = $conexion->query("select * from productos where inventario>0 order by id ASC limit " . $_GET['limite'] . "," . $limite) or die($conexion->error);
+              } else {
+                $resultado = $conexion->query("select * from productos where inventario>0 order by id ASC limit " . $limite) or die($conexion->error);
+              }
+              while ($fila = mysqli_fetch_array($resultado)) {
+
 
               ?>
                   <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
@@ -101,7 +105,7 @@ if (!isset($_GET['texto'])) {
                     </div>
                   </div>
 
-              <?php }
+              <?php } }
               } else {
                 echo '<h2>No se Encontraron Resultados</h2>';
               } ?>
@@ -111,13 +115,25 @@ if (!isset($_GET['texto'])) {
               <div class="col-md-12 text-center">
                 <div class="site-block-27">
                   <ul>
-                    <li><a href="#">&lt;</a></li>
-                    <li class="active"><span>1</span></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&gt;</a></li>
+
+                    <?php
+                    if (isset($_GET['limite'])) {
+                      if ($_GET['limite'] > 0) {
+                        echo '<li><a href="index.php?limite=' . ($_GET['limite'] - 10) . '">&lt;</a></li>';
+                      }
+                    }
+                    for ($i = 0; $i < $totalBotones; $i++) {
+                      echo '<li><a href="index.php?limite=' . ($i * 10) . '">' . ($i + 1) . '</a></li>';
+                    }
+                    if (isset($_GET['limite'])) {
+                      if ($_GET['limite'] + 10 < $totalBotones * 10) {
+                        echo '<li><a href="index.php?limite=' . ($_GET['limite'] + 10) . '>&gt;</a></li>';
+                      }
+                    } else {
+                      echo '<li><a href="index.php?limite=10">&gt;</a></li>';
+                    }
+                    ?>
+                    
                   </ul>
                 </div>
               </div>
@@ -179,8 +195,8 @@ if (!isset($_GET['texto'])) {
                 $re = $conexion->query("select * from colores");
                 while ($f = mysqli_fetch_array($re)) {
                 ?>
-                  <a href="./busqueda.php?texto=<?php echo $f['color'];?>" class="d-flex color-item align-items-center">
-                    <span style="background-color:<?php echo $f['codigo'];?>" class="color d-inline-block rounded-circle mr-2"></span> <span class="text-black"><?php echo $f['color'];?></span>
+                  <a href="./busqueda.php?texto=<?php echo $f['color']; ?>" class="d-flex color-item align-items-center">
+                    <span style="background-color:<?php echo $f['codigo']; ?>" class="color d-inline-block rounded-circle mr-2"></span> <span class="text-black"><?php echo $f['color']; ?></span>
                   </a>
                 <?php } ?>
               </div>
@@ -252,6 +268,56 @@ if (!isset($_GET['texto'])) {
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: './php/obtener_productos.php', // Reemplaza con la URL correcta de tu backend
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          var precios = data.map(producto => parseFloat(producto.precio));
+
+          var minPrice = Math.min(...precios);
+          var maxPrice = Math.max(...precios);
+
+          initSlider(minPrice, maxPrice);
+        },
+        error: function(xhr, status, error) {
+          console.error("Error al obtener los datos:", error);
+        }
+      });
+    });
+
+    function initSlider(minPrice, maxPrice) {
+      $("#slider-range").slider({
+        range: true,
+        min: minPrice,
+        max: maxPrice,
+        values: [minPrice, maxPrice],
+        slide: function(event, ui) {
+          $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+        },
+        change: function(event, ui) {
+          filtrarProductos(ui.values[0], ui.values[1]);
+        }
+      });
+
+      $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+        " - $" + $("#slider-range").slider("values", 1));
+    }
+
+    function filtrarProductos(minPrice, maxPrice) {
+      $('div.col-sm-6.col-lg-4.mb-4').each(function() {
+        var precio = parseFloat($(this).find('.text-primary').text().replace('S/.', ''));
+        if (precio >= minPrice && precio <= maxPrice) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    }
+  </script>
 
 </body>
 
