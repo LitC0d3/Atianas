@@ -1,0 +1,25 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+/*HEADER*/
+.fixed-top {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1030; /* Bootstrap's default z-index for .fixed-top */
+}
+
+.shadow-bottom {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}

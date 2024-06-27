@@ -1,0 +1,23 @@
+.media-icons{
+    z-index: 888;
+    position: absolute;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.5s ease;
+    top: 65%;
+}
+  
+.media-icons a{
+    color: #fff;
+    font-size: 1.6em;
+    transition: 0.3s ease;
+}
+  
+.media-icons a:not(:last-child){
+    margin-bottom: 20px;
+}
+  
+.media-icons a:hover{
+    transform: scale(1.3);
+}
