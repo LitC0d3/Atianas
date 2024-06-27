@@ -1,94 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Website - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
   <head>
-    <title>Atianas</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
-
+    <title>Atianas</title>
     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
 
     <link rel="icon" href="Recursos/Img/Header/atianas.ico">
-
-
-    <link rel="stylesheet" href="Recursos/Css/Seccion/carousel/slider_productos.css">
-
-    <script src="script.js" defer></script>
 
     <!-- Fontawesome Link for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
-    
+    <!--CSS-->
+    <link rel="stylesheet" href="Recursos/Css/Seccion/Carrusel/productos.css">
+    <!--JS-->
+    <script src="Recursos/Js/Contenido/Carrusel/scriptproducto.js" defer></script>
+
   </head>
   <body>
 
-    
-    <!--Slider-Productos-Muestra-->
-
-    <div class="carousel-container">
-        <div class="content-wrapper">
-            <div class="carousel-text">
-                <h2>Nuestra Tendencia</h2>
-                <h1>Productos Mas Populares</h1>
-                <p>Lorem ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</p>
-                <button class="explore-btn">Explorar</button>
+    <header class="px-5 pt-3 bg-white">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#">
+                <img src="Recursos/Img/Header/atianas.ico" alt="Logo Atianas" style="height: 40px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Explorar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Shop</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-search"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-bag"></i></a>
+                    </li>
+                </ul>
             </div>
-            <div class="carousel-wrapper">
-                <div class="carousel">
-                    <button class="arrow prev">&lt;</button>
-                    <div class="product-container">
-                        <div class="product">
-                            <img src="Recursos/Img/nosotros.webp" class="d-block w-100" alt="">
-                            <h3>Producto 1</h3>
-                            <p>S/. 30.00</p>
-                            <button class="add-to-cart">+</button>
+        </nav>
+    </header>
+
+    <!--HOME-->
+    <div class="container-fluid h-80 ">
+        <div class="row">
+            <div class="col-6 bg-light justify-content-center">
+                <p>titulo</p>
+            </div>
+            <div class="col-6" style="padding-left: 0; padding-right: 0;">
+
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" >
+
+                    <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+
+                    <div class="carousel-inner ">
+                        <div class="carousel-item active">
+                            <img src="Recursos/Img/Home/sl01.jpg" class="d-block w-100" alt="...">
                         </div>
-                        <div class="product">
-                            <img src="Recursos/Img/nosotros.webp" class="d-block w-100" alt="">
-                            <h3>Producto 2</h3>
-                            <p>S/. 30.00</p>
-                            <button class="add-to-cart">+</button>
+                        <div class="carousel-item">
+                            <img src="Recursos/Img/Home/sl02.jpg" class="d-block w-100" alt="...">
                         </div>
-                        <div class="product">
-                            <img src="Recursos/Img/nosotros.webp" class="d-block w-100" alt="">
-                            <h3>Producto 3</h3>
-                            <p>S/. 30.00</p>
-                            <button class="add-to-cart">+</button>
-                        </div>
-                        <div class="product">
-                            <img src="Recursos/Img/nosotros.webp" class="d-block w-100" alt="">
-                            <h3>Producto 4</h3>
-                            <p>S/. 30.00</p>
-                            <button class="add-to-cart">+</button>
-                        </div>
-                        <div class="product">
-                            <img src="Recursos/Img/nosotros.webp" class="d-block w-100" alt="">
-                            <h3>Producto 5</h3>
-                            <p>S/. 30.00</p>
-                            <button class="add-to-cart">+</button>
+                        <div class="carousel-item">
+                            <img src="Recursos/Img/Home/sl01.jpg" class="d-block w-100" alt="...">
                         </div>
                     </div>
-                    <button class="arrow next">&gt;</button>
                 </div>
-                <div class="dots"></div>
             </div>
         </div>
     </div>
 
-    <!--SLIDER-PRODUCTOS
 
-    <br><br>
+    <!--INFORMACION BASICA-->
 
-    <div class="container-fluid p-0 bg-white py-4">
+    <div class="container-fluid" style="background-color: #FFFDF4; ">
+        <div class="row no-gutters p-0 py-5">
+            <div class="col-md-3">
+                <div class="p-3 rounded text-center">
+                    <h5>Título 1</h5>
+                    <p class="small">Texto pequeño debajo del título 1</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-3 rounded text-center">
+                    <h5>Título 2</h5>
+                    <p class="small">Texto pequeño debajo del título 2</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-3 rounded text-center">
+                    <h5>Título 3</h5>
+                    <p class="small">Texto pequeño debajo del título 3</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-3 rounded text-center">
+                    <h5>Título 4</h5>
+                    <p class="small">Texto pequeño debajo del título 4</p>
+                </div>
+            </div>
+        </div>
+    </div>
+  
 
-        <div class="container-fluid py-5">
+
+    <!--SLIDER-PRODUCTOS-->
+
+    <br>
+
+    <div class="container-fluid p-0 bg-white py-4" style="box-shadow: 0 0 10px rgba(0,0,0,0.1);box-sizing: border-box;">
+
+        <div class="container-fluid py-2">
     
             <div class="row">
     
                 <div class="col-sm-5 py-5 bg-white" >
-                    <div class="container mr-auto" style="padding-left: 30%;">
+                    <div class="container mr-auto py-5" style="padding-left: 20%;">
                         <h5 style="color: #888;">Nuestra Tendencia</h5>
                         <h1>Productos Mas Populares</h1>
                         <p>Lorem ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</p>
@@ -96,67 +151,144 @@
                     </div>
                 </div>
 
-                <div class="col-sm-7 p-3">
+                <div class="col-sm-7">
+                    <div class="wrapper" >
 
-                    <div class="container">
-            
+                        <ul class="carouselproducto">
+                            <li class="cardproducto">
+                            <div class="img"><img src="Recursos/Img/Home/Carrusel/Productos/1.webp" alt="img" draggable="false"></div>
+                            <h2>Collar</h2>
+                            <span>Sales </span>
+                            </li>
+
+                            <li class="cardproducto">
+                            <div class="img"><img src="Recursos/Img/Home/Carrusel/Productos/2.webp" alt="img" draggable="false"></div>
+                            <h2>Collar</h2>
+                            <span>Sales </span>
+                            </li>
+
+                            <li class="cardproducto">
+                            <div class="img"><img src="Recursos/Img/Home/Carrusel/Productos/3.webp" alt="img" draggable="false"></div>
+                            <h2>Collar</h2>
+                            <span>Sales </span>
+                            </li>
+
+                            <li class="cardproducto">
+                            <div class="img"><img src="Recursos/Img/Home/Carrusel/Productos/4.webp" alt="img" draggable="false"></div>
+                            <h2>Collar</h2>
+                            <span>Sales </span>
+                            </li>
+
+                            <li class="cardproducto">
+                            <div class="img"><img src="Recursos/Img/Home/Carrusel/Productos/5.webp" alt="img" draggable="false"></div>
+                            <h2>Collar</h2>
+                            <span>Sales </span>
+                            </li>
+
+                            <li class="cardproducto">
+                            <div class="img"><img src="Recursos/Img/Home/Carrusel/Productos/6.webp" alt="img" draggable="false"></div>
+                            <h2>Collar</h2>
+                            <span>Sales </span>
+                            </li>
+                        </ul>
+
+                        <div class="indicator-container">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                        </div>
+                        
+                        <i id="left" class="fa-solid fa-angle-left"></i>
+                        <i id="right" class="fa-solid fa-angle-right"></i>
+
                     </div>
-                    
+
                 </div>
                 
             </div>
     
         </div>   
     
-    </div>-->
+    </div>
 
+    <!--COLECCIONES-->
+    <div class="container mt-5">
 
-        <div class="wrapper">
-            <i id="left" class="fa-solid fa-angle-left"></i>
-            <ul class="carousel">
-                <li class="card">
-                    <div class="img"><img src="images/img-1.jpg" alt="img" draggable="false"></div>
-                    <h2>Blanche Pearson</h2>
-                    <span>Sales Manager</span>
-                </li>
-                <li class="card">
-                    <div class="img"><img src="images/img-2.jpg" alt="img" draggable="false"></div>
-                    <h2>Joenas Brauers</h2>
-                    <span>Web Developer</span>
-                </li>
-                <li class="card">
-                    <div class="img"><img src="images/img-3.jpg" alt="img" draggable="false"></div>
-                    <h2>Lariach French</h2>
-                    <span>Online Teacher</span>
-                </li>
-                <li class="card">
-                    <div class="img"><img src="images/img-4.jpg" alt="img" draggable="false"></div>
-                    <h2>James Khosravi</h2>
-                    <span>Freelancer</span>
-                </li>
-                <li class="card">
-                    <div class="img"><img src="images/img-5.jpg" alt="img" draggable="false"></div>
-                    <h2>Kristina Zasiadko</h2>
-                    <span>Bank Manager</span>
-                </li>
-                <li class="card">
-                    <div class="img"><img src="images/img-6.jpg" alt="img" draggable="false"></div>
-                    <h2>Donald Horton</h2>
-                    <span>App Designer</span>
-                </li>
-            </ul>
-            <i id="right" class="fa-solid fa-angle-right"></i>
+        <div class="row text-center pt-2">
+            <div class="col-12">
+                <h1>Nuestras Colecciones</h1>
+                <!--<button class="btn btn-dark float-right">Explorar todo</button>-->
+            </div>
+            <br />
+
         </div>
 
+        <div class="row pt-5">
 
-    
-  
-    
+            <div class="col-md-4">
+                <a>
+                    <div class="card border-0" style="position: relative;">
+
+                        <img src="Recursos/Img/Home/sl01.jpg" alt="...">
+
+                        <div class="overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white;">
+                            <h1 class="text-center" style="font-weight: bold">SUMMER TOP STYLE</h1>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a>
+                    <div class="card border-0" style="position: relative;">
+
+                        <img src="Recursos/Img/Home/sl01.jpg" alt="...">
+
+                        <div class="overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white;">
+                            <h1 class="text-center" style="font-weight: bold">SCAPE ALL GIVE</h1>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a>
+                    <div class="card border-0" style="position: relative;">
+
+                        <img src="Recursos/Img/Home/sl01.jpg" alt="...">
+
+                        <div class="overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white;">
+                            <h1 class="text-center" style="font-weight: bold">LINE AT SOUR</h1>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!--SLIDER PROMOCIONES-->
+    <div id="carouselExampleSlidesOnly" class="carousel slide pt-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="Recursos/Img/slider01.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="Recursos/Img/slider02.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="Recursos/Img/slider01.png" class="d-block w-100" alt="...">
+          </div>
+        </div>
+    </div>
 
 
-    
 
-<!--
+    <!--PIE DE PAGINA-->
+
     <footer class="footer bg-white  border-0  py-4" style="margin-top: 50px;">
         <hr>
         <div class="container pt-5">
@@ -219,22 +351,11 @@
             
         </div>
     </footer>
--->    
-
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/aos.js"></script>
-    
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
-    
 
-    <script src="js/main.js"></script>
+    
   </body>
 </html>
