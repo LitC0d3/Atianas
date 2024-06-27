@@ -24,7 +24,7 @@ body {
 
 .wrapper {
   position: relative;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
 }
 
 .wrapper i {
@@ -60,7 +60,7 @@ body {
 .indicator-container {
   display: flex;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 30px;
 }
 
 .indicator {
